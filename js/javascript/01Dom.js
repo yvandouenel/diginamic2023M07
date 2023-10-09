@@ -6,9 +6,9 @@ window.document.body.appendChild(h1);
 // Gestion de l'événement click asynchrone (non bloquant)
 // Le deuxième paramètre est de type function et c'est ce que l'on appelle un callback
 // On dit que addEventListener est une Higher Order Function car elle attend une fonction en paramètre
-h1.addEventListener("click", handleClickH1);
-
-function handleClickH1 () {
+h1.addEventListener("click", handleClickHeading1);
+/*  */
+function handleClickHeading1 () {
   console.log(`Click sur h1`);
   const span = window.document.createElement("span");
   span.innerText = "... texte ";
@@ -28,7 +28,6 @@ let h2 = document.getElementById("h2");
   // Remonte la chaîne des prototypes
   h2 = Object.getPrototypeOf(h2);
 } */
-
 h2.align = "right";
 //h2.hidden = true;
 h2.title = "Mon titre de h2";
