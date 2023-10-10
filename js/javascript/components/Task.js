@@ -1,8 +1,10 @@
 import ManageDom from "./ManageDom.js";
+import FetchJson from "../services/FetchJson.js";
 export default class Task extends ManageDom {
-  constructor(label, done = false) {
+  constructor(label, id, done = false) {
     super();
     this.label = label;
+    this.id = id;
     this.done = done;
     this.dom_elements = this.render();
 
@@ -35,7 +37,7 @@ export default class Task extends ManageDom {
       this.dom_elements.section.remove();
 
       // Comment faire en sorte que cela supprime également la tâche sur le serveur ?
-
+      FetchJson.deleteTask(this.id);
       // En cas de problème, à minima, afficher dans le body qu'il y a eu un problème pour supprimer la tâche sur le serveur
     }
     // Gestion du click sur valider
@@ -50,6 +52,8 @@ export default class Task extends ManageDom {
         this.dom_elements.h2.classList.remove("strike");
         this.dom_elements.button_validate.innerText = "Valider";
       }
+      // Modification sur le serveur
+      FetchJson.patchTask(this.id, {done: this.done});
     }
   }
 

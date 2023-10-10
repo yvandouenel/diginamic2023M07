@@ -14,7 +14,7 @@ FetchJson.loadTasks()
     // Une fois que j'ai récupéré le tableau de tâches, je les transforme en éléments du 
     // DOM en passant par la class Task
     tasks.forEach(task => {
-      new Task(task.label, task.done);
+      new Task(task.label, task.id, task.done);
     });
 
   })
