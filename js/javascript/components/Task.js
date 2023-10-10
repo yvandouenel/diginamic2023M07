@@ -3,7 +3,7 @@ export default class Task extends ManageDom {
   constructor(label, done = false) {
     super();
     this.label = label;
-    this.done = false;
+    this.done = done;
     this.dom_elements = this.render();
 
     // appel de la méthode qui gère les événements 
@@ -11,7 +11,9 @@ export default class Task extends ManageDom {
   }
   render() {
     const section = this.createMarkup("section", "", document.body, [{ class: "task d-flex gap-3 mt-3" }]);
-    const h2 = this.createMarkup("h2", this.label, section);
+    // Opérateur ternaire
+    const class_css = this.done ? 'strike' : '';
+    const h2 = this.createMarkup("h2", this.label, section, [{class: class_css}]);
 
     // Création du bouton valider
     const button_validate = this.createMarkup("button", "Valider", section, [{ class: "btn btn-success ms-3" }]);
