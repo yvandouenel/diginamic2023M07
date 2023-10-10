@@ -33,6 +33,10 @@ export default class Task extends ManageDom {
     this.dom_elements.button_delete.onclick = (event) => {
       console.log(`dans onclick du bouton delete`);
       this.dom_elements.section.remove();
+
+      // Comment faire en sorte que cela supprime également la tâche sur le serveur ?
+
+      // En cas de problème, à minima, afficher dans le body qu'il y a eu un problème pour supprimer la tâche sur le serveur
     }
     // Gestion du click sur valider
     this.dom_elements.button_validate.onclick = (event) => {
