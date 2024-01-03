@@ -1,10 +1,10 @@
 
 import './App.css';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-     <h1>Counter</h1>
+      <h1>{props.title}</h1>
     </div>
   );
 }
