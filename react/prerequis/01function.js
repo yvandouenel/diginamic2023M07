@@ -30,7 +30,7 @@ const amount = 10; // type primitif
 console.log(`account`, account);
 console.log(`amount`, amount);
 
-withdraw(account, amount);
+withdraw(account, amount); // Attention, le premier argument est passé en référence alors que le deuxième est passé en valeur
 
 console.log(`account`, account);
 console.log(`amount`, amount);
