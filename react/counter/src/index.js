@@ -6,6 +6,6 @@ import App from './components/App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App title={"Compteurs"}/>
+    <App title={"Compteurs"} date={"03/01/2024"}/>
   </React.StrictMode>
 );
