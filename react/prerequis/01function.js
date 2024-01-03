@@ -4,11 +4,13 @@
  * @param {number} b 
  * @returns {number} a+b
  */
-function sum(a, b) {// paramètres
-  // oode ici
+/* function sum(a, b) {// paramètres
+  // code ici
   console.log(`a : `, a);
   return a + b;// le retour 
-}
+} */
+const sum = (a, b) => a + b; 
+const double = a => a * 2; 
 sum(1, 2);// appel de la fonction sum avec les 2 arguments
 
 /**
