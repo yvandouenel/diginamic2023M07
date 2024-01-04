@@ -23,11 +23,21 @@ function App() {
     // Modification de l'état
     setTasks(currentState => tasksCopy);
   }
+  function handleClickDelete(task) {
+    setTasks(tasks.toSpliced(tasks.indexOf(task), 1));
+  }
 
   return (
     <div className="App container">
       <h1>Gestion des tâches</h1>
-      {tasks.map((task) => <Task key={task.id} task={task} onClickValidate={handleClickValidate}  />)}
+      {tasks.map((task) => 
+      <Task 
+      key={task.id} 
+      task={task} 
+      onClickValidate={handleClickValidate}
+      onClickDelete={handleClickDelete}  
+
+      />)}
     </div>
   );
 }
