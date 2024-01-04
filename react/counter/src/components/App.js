@@ -15,6 +15,13 @@ function App(props) {
 
   function handleClickLess(counterId) {
     console.log(`Dans handleClickLess, id : `, counterId);
+    // Copy du state
+    const countersCopy = [...counters];
+    countersCopy.forEach(counter => {
+      if (counter.id === counterId) { counter.value --; }
+    })
+    // Changement du state
+    setCounters((currentCounters) => countersCopy);
   }
   return (
     <div className="App">
