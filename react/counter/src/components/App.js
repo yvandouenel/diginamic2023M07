@@ -21,7 +21,17 @@ function App(props) {
       if (counter.id === counterId) { counter.value --; }
     })
     // Changement du state
-    setCounters((currentCounters) => countersCopy);
+    setCounters(countersCopy);
+  }
+  function handleClickMore(counterId) {
+    console.log(`Dans handleClickMore, id : `, counterId);
+    // Copy du state
+    const countersCopy = [...counters];
+    countersCopy.forEach(counter => {
+      if (counter.id === counterId) { counter.value ++; }
+    })
+    // Changement du state
+    setCounters(countersCopy);
   }
   return (
     <div className="App">
@@ -29,7 +39,9 @@ function App(props) {
       {counters.map((counter) => <Counter
         key={counter.id}
         counter={counter}
-        onClickLess={handleClickLess} />)}
+        onClickLess={handleClickLess} 
+        onClickMore={handleClickMore} 
+        />)}
       {/* Appel du composant fonction Counter */}
     </div>
   );

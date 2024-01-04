@@ -1,5 +1,5 @@
 
-const Counter = ({ counter, onClickLess }) => {
+const Counter = ({ counter, onClickLess, onClickMore }) => {
 
 
   /**
@@ -18,7 +18,7 @@ const Counter = ({ counter, onClickLess }) => {
       >-</button>
       <button>{counter.value}</button>
       <button
-        onClick={() => { }}
+        onClick={(event) => { onClickMore(counter.id) }}
       >+
       </button>
     </section>
