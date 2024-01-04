@@ -23,6 +23,16 @@ function App(props) {
     // Changement du state
     setCounters(countersCopy);
   }
+  function handleClickLessAll() {
+    console.log(`Dans handleClickLessAll`);
+    // Copy du state
+    const countersCopy = [...counters];
+    countersCopy.forEach(counter => {
+      counter.value --;
+    })
+    // Changement du state
+    setCounters(countersCopy);
+  }
   function handleClickMore(counterId) {
     console.log(`Dans handleClickMore, id : `, counterId);
     // Copy du state
@@ -33,9 +43,23 @@ function App(props) {
     // Changement du state
     setCounters(countersCopy);
   }
+  function handleClickMoreAll() {
+    console.log(`Dans handleClickMoreAll`);
+    // Copy du state
+    const countersCopy = [...counters];
+    countersCopy.forEach(counter => {
+      counter.value ++;
+    })
+    // Changement du state
+    setCounters(countersCopy);
+  }
   return (
     <div className="App">
       <h1>{props.title}</h1>
+      <button
+      onClick={handleClickLessAll}>-</button>
+      <button
+      onClick={handleClickMoreAll}>+</button>
       {counters.map((counter) => <Counter
         key={counter.id}
         counter={counter}
