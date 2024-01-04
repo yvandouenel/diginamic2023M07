@@ -12,10 +12,22 @@ function App() {
     { label: "Faire la vaisselle", id: 3, done: false }
   ]);
 
+  function handleClickValidate(taskId) {
+    console.log(`Dans handleClickValidate, id : `, taskId);
+    // Copie de l'état et modification en utilisant map
+    const tasksCopy = tasks.map((task)=> {
+      if(task.id === taskId) task.done = !task.done;
+      return task;
+    })
+
+    // Modification de l'état
+    setTasks(currentState => tasksCopy);
+  }
+
   return (
     <div className="App container">
       <h1>Gestion des tâches</h1>
-      {tasks.map((task) => <Task key={task.id} task={task} />)}
+      {tasks.map((task) => <Task key={task.id} task={task} onClickValidate={handleClickValidate}  />)}
     </div>
   );
 }
