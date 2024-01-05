@@ -53,9 +53,26 @@ function App() {
 
   }
   function handleClickDelete(task) {
-    setTasks(tasks.toSpliced(tasks.indexOf(task), 1));
-    // Suppression de la tâcje sur le server json-server
-    if (task) TaskFetcher.deleteTask(task.id);
+    
+    // confirmation
+    if (window.confirm("Etes vous sûr de vouloir supprimer cette tâche ?")) {
+      setTasks(tasks.toSpliced(tasks.indexOf(task), 1));
+      // Suppression de la tâcje sur le server json-server
+      if (task) {
+        const promise = TaskFetcher.deleteTask(task.id);
+        promise.catch(error => {
+          console.error(`Erreur attrapée dans handleClickDelete ` + error);
+          // Affichage de l'erreur 
+          setError(error.message);
+          // Afficher les tâches présentes sur le serveur
+          const promise = TaskFetcher.loadTasks();
+          promise.then(tasks => {
+            setTasks(tasks);
+          })
+        })
+      }
+    }
+
   }
 
   return (

@@ -21,7 +21,7 @@ export default class TaskFetcher {
    * @param {object} propertieToPatch 
    */
   static patchTask(taskId, propertieToPatch) {
-    return fetch(`${this.url}/${taskId}qsdf`,
+    return fetch(`${this.url}/${taskId}`,
       {
         headers: {
           'Accept': 'application/json',
@@ -49,7 +49,9 @@ export default class TaskFetcher {
         },
         method: "DELETE",
       })
-      .then(function (res) { console.log(res) })
-      .catch(function (res) { console.log(res) })
+      .then(function (res) {
+        if (res.status === 200) console.log(`La suppression s'est bien passée`);
+        else throw new Error("Problème serveur lors du delete. Statut : " + res.status);
+      })
   }
 }
