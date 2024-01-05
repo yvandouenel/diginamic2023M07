@@ -1,6 +1,6 @@
 export default class TaskFetcher {
   static url = 'http://localhost:3000/tasks';
-  
+
   static loadTasks() {
     return fetch(this.url)
       .then((response) => {
@@ -20,18 +20,36 @@ export default class TaskFetcher {
    * @param {number} taskId 
    * @param {object} propertieToPatch 
    */
-  static patchTask(taskId, propertieToPatch){
+  static patchTask(taskId, propertieToPatch) {
+    return fetch(`${this.url}/${taskId}qsdf`,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "PATCH",
+        //body: JSON.stringify({ "title": "Simon", "author": "Yvan" })
+        body: JSON.stringify(propertieToPatch)
+      })
+      .then(function (res) {
+        if (res.status === 200) console.log(`La modification s'est bien passée`);
+        else throw new Error("Problème serveur lors du patch. Statut : " + res.status);
+      })
+  }
+  /**
+   * Permet de supprimer une tâche
+   * @param {number} taskId 
+   */
+  static deleteTask(taskId) {
     return fetch(`${this.url}/${taskId}`,
-    {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "PATCH",
-      //body: JSON.stringify({ "title": "Simon", "author": "Yvan" })
-      body: JSON.stringify(propertieToPatch)
-    })
-    .then(function (res) { console.log(res) })
-    .catch(function (res) { console.log(res) })
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "DELETE",
+      })
+      .then(function (res) { console.log(res) })
+      .catch(function (res) { console.log(res) })
   }
 }
