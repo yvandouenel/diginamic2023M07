@@ -21,7 +21,7 @@ export default class TaskFetcher {
    * @param {object} propertieToPatch 
    */
   static patchTask(taskId, propertieToPatch) {
-    return fetch(`${this.url}/${taskId}`,
+    return fetch(`${this.url}5/${taskId}`,
       {
         headers: {
           'Accept': 'application/json',

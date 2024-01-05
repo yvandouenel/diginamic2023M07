@@ -48,16 +48,19 @@ function App() {
           promise.then(tasks => {
             setTasks(tasks);
           })
+          setTimeout(() => {
+            setError("");
+          }, 3000)
         })
     }
 
   }
   function handleClickDelete(task) {
-    
+
     // confirmation
     if (window.confirm("Etes vous sûr de vouloir supprimer cette tâche ?")) {
       setTasks(tasks.toSpliced(tasks.indexOf(task), 1));
-      // Suppression de la tâcje sur le server json-server
+      // Suppression de la tâche sur le server json-server
       if (task) {
         const promise = TaskFetcher.deleteTask(task.id);
         promise.catch(error => {
