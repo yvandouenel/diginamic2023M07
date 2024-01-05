@@ -1,8 +1,7 @@
 export default class TaskFetcher {
-  constructor(url) {
-    this.url = url;
-  }
-  loadTasks() {
+  static url = 'http://localhost:3000/tasks';
+  
+  static loadTasks() {
     return fetch(this.url)
       .then((response) => {
         if (response.status === 200) return response.json();

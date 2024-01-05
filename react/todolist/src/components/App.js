@@ -6,16 +6,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import TaskFetcher from './../services/TaskFetcher';
 
 function App() {
-  // Utilisation du hook useEffect pour exécuter du code après le chargement du composant
+  // Utilisation du hook useEffect (asynchrone) pour exécuter du code après le chargement du composant
   useEffect(() => {
-    console.log(`Dans useEffect`);
-    const taskFetcher = new TaskFetcher('http://localhost:3000/tasks');
-    const promise = taskFetcher.loadTasks();
+    const promise = TaskFetcher.loadTasks();
     promise.then(tasks => {
       setTasks(tasks);
     })
   }, []);
-  console.log(`Dans APP`);
+
   // création du state tasks en appelant la fonction useState qui s'exécute avant le chargement du composant
   const [tasks, setTasks] = useState([]);
 
