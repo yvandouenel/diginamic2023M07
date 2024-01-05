@@ -1,57 +1,51 @@
-/* function testPromise() {
-  return new Promise((resolve, reject) => {
-    // Le setTimeout est asynchrone (non bloquant)
-    setTimeout(() => {
-      // Cas favorable - le Math.random() donne le côté aléatoire
-      if (Math.random() > 0.5) {
-        resolve("Promesse tenue !")
-      }
-      // Cas défavorable
-      else {
-        reject("Essaie encore")
-      }
-    }, 2000)
-  });
-}
-function testPromise2() {
-  return new Promise((resolve, reject) => {
-    // Le setTimeout est asynchrone (non bloquant)
-    setTimeout(() => {
-      // Cas favorable - le Math.random() donne le côté aléatoire
-      if (Math.random() > 0.5) {
-        resolve("Promesse 2 tenue !")
-      }
-      // Cas défavorable
-      else {
-        reject("Essaie encore encore")
-      }
-    }, 1000)
-  });
-}
-
-testPromise()
-  .then( msg => {
-    console.log(`message1 : `, msg);
-    return testPromise2();
-  })
-  .then( msg => {
-    console.log(`message2 : `, msg);
-  })
-  .catch( error => {
-    console.error("Erreur attrapée : " + error)
-  });
-
-  console.log(`Je suis en ligne 24`);
+/**
+ * Permet de récupérer une chaîne de caractère (un token) dans le cas favorable
+ * @returns Promise<string>
  */
-  fetch("http://localhost:3000/tasks")
-  .then(response => {
-    console.log(`response.status`, response.status);
-    if(response.status !== 200) throw new Error("Pb dans la réponse du serveur");
-    return response.json(response);
+function getToken() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let random = Math.random()
+      if (random > 0.5) {
+        // Cas favorable
+        resolve("TSDSAZEdsqsdzeat666+aqrz");
+      } else if (random < 0.5 && random > 0.3) resolve("")
+      else reject("Problème de token")
+    }, 1000);
   })
-  .then(data => {
-    console.log(`data :`, data);
+}
+/**
+ * Permet de récupérer des utilisateurs dans le cas favorable
+ * @returns Promise<string>
+ */
+function getUsers(token) {
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject("vous devez donner un token valide pour récupérer les utilisateurs")
+    }
+    setTimeout(() => {
+      if (Math.random() > 0.5) {
+        // Cas favorable
+        resolve([
+          { name: "bob", uid: 156 },
+          { name: "jiji", uid: 358 },
+        ]);
+      } else reject("Problème récupération des utilisateurs")
+    }, 1000);
+  })
+
+}
+
+const result = getToken()
+  .then((token) => {
+    console.log(`J'ai bien recu le token : `, token);
+    return getUsers(token);
+  })
+  .then((users) => {
+    console.log(`J'ai bien recu les utilisateurs : `, users);
   })
   .catch(error => {
-    console.error("Erreur attrapée" + error);
+    console.error(error)
   })
+console.log(`result `, result);
+console.log(`Ici `);
