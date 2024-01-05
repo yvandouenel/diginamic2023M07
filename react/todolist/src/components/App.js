@@ -44,6 +44,10 @@ function App() {
         .catch(error => {
           console.error("Erreur attrapée dans handleClickValidate " + error);
           setError(error.message);
+          const promise = TaskFetcher.loadTasks();
+          promise.then(tasks => {
+            setTasks(tasks);
+          })
         })
     }
 
@@ -57,7 +61,7 @@ function App() {
   return (
     <div className="App container">
       <h1>Gestion des tâches</h1>
-      {error  && (<p className="text-danger">Une erreur est survenue : {error}</p>)}
+      {error && (<p className="text-danger">Une erreur est survenue : {error}</p>)}
       {tasks.map((task) =>
         <Task
           key={task.id}
