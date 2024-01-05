@@ -56,7 +56,6 @@ function App() {
 
   }
   function handleClickDelete(task) {
-
     // confirmation
     if (window.confirm("Etes vous sûr de vouloir supprimer cette tâche ?")) {
       setTasks(tasks.toSpliced(tasks.indexOf(task), 1));
@@ -77,10 +76,33 @@ function App() {
     }
 
   }
+  function handleSubmitAdd(label) {
+    console.log(`handleSubmitAdd, label : `, label);
+    // ajout d'une tâche dans le state via setTasks
+    const tasksCopy = [...tasks, { label: label.value, id: Math.trunc(Math.random() * 10000), done: false }];
+    setTasks(tasksCopy);
+
+    // Requête post pour ajouter la tâche sur le serveur via TaskFetcher
+    TaskFetcher.addTask({ label: label.value, done: false });
+    
+    // On remet à vide la value du label
+    label.value = "";
+  }
 
   return (
     <div className="App container">
       <h1>Gestion des tâches</h1>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const labelTask = document.getElementById("input-task");
+          if (labelTask) handleSubmitAdd(labelTask);
+        }}
+        className='d-flex gap-2'>
+        <label htmlFor="input-task" className='visually-hidden'>Tâche : </label>
+        <input type="text" id="input-task" placeholder='Ecrire ici votre nouvelle tâche' />
+        <button type="submit" className='btn btn-success'>Ajouter une tâche</button>
+      </form>
       {error && (<p className="text-danger">Une erreur est survenue : {error}</p>)}
       {tasks.map((task) =>
         <Task

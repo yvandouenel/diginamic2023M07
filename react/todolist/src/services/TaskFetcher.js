@@ -21,7 +21,7 @@ export default class TaskFetcher {
    * @param {object} propertieToPatch 
    */
   static patchTask(taskId, propertieToPatch) {
-    return fetch(`${this.url}5/${taskId}`,
+    return fetch(`${this.url}/${taskId}`,
       {
         headers: {
           'Accept': 'application/json',
@@ -52,6 +52,26 @@ export default class TaskFetcher {
       .then(function (res) {
         if (res.status === 200) console.log(`La suppression s'est bien passée`);
         else throw new Error("Problème serveur lors du delete. Statut : " + res.status);
+      })
+  }
+   /**
+   * Permet d'ajouter une tâche
+   * @param {object} task 
+   */
+   static addTask(task) {
+    return fetch(`${this.url}`,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        //body: JSON.stringify({ "title": "Simon", "author": "Yvan" })
+        body: JSON.stringify(task)
+      })
+      .then(function (res) {
+        if (res.status === 201) console.log(`L'ajout s'est bien passé`);
+        else throw new Error("Problème serveur lors du post. Statut : " + res.status);
       })
   }
 }
