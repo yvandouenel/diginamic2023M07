@@ -15,4 +15,23 @@ export default class TaskFetcher {
         console.error("Erreur attrapée dans loadTasks " + error)
       })
   }
+  /**
+   * Permet de modifier une tâche
+   * @param {number} taskId 
+   * @param {object} propertieToPatch 
+   */
+  static patchTask(taskId, propertieToPatch){
+    return fetch(`${this.url}/${taskId}`,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "PATCH",
+      //body: JSON.stringify({ "title": "Simon", "author": "Yvan" })
+      body: JSON.stringify(propertieToPatch)
+    })
+    .then(function (res) { console.log(res) })
+    .catch(function (res) { console.log(res) })
+  }
 }
