@@ -1,0 +1,19 @@
+{
+    "name": "yvandouenel/tests",
+    "description": "tests unitaires avec phpunit",
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yvandouenel\\Tests\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "yvandouenel",
+            "email": "y.douenel@coopernet.fr"
+        }
+    ],
+    "require": {}
+}
