@@ -35,6 +35,18 @@ function App() {
   return (
     <div className="App container">
       <h1>Todo List</h1>
+      <form
+      onSubmit={(e)=>{
+        e.preventDefault();
+        const taskLabel = document.getElementById("task-label") as HTMLInputElement;
+        if(taskLabel.value) {
+          console.log(`taskLabel.value`, taskLabel.value);
+        }
+      }}>
+        <label htmlFor="task-label">Tâche</label>
+        <input type="text" id="task-label" />
+        <button type="submit">Ajouter une tâche</button>
+      </form>
       {[...tasks].sort((a: TaskInterface, b: TaskInterface) => (Number(a.done) - Number(b.done))).map((task: TaskInterface) => <Task key={task.id} task={task} onClickValidate={handleClickValidate} />)}
 
     </div>

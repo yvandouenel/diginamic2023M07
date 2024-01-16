@@ -1,0 +1,27 @@
+{
+  "article": [
+    {
+      "label": "Barbie fait de la bicyclette ",
+      "price": 9,
+      "id": 4,
+      "year": "2012"
+    },
+    {
+      "label": "kapla - boite de 1000",
+      "price": 15,
+      "id": 5,
+      "year": "2005"
+    },
+    {
+      "label": "Légo - boite de 1000",
+      "price": 20,
+      "id": 6,
+      "year": "2014"
+    }
+  ],
+  "panier": [
+    {
+      "id": 4
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import TaskInterface from "../interfaces/TaskInterface";
 export default class TaskFetcher {
-  static url:string = 'http://localhost:3000/tasks';
+  static url:string = 'http://localhost:3001/tasks';
 
   static loadTasks():Promise<TaskInterface[]> {
     return fetch(this.url)
